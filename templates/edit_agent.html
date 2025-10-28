@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Agent</title>
+    <!-- Подключаем Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h1 class="text-center">Edit Agent</h1>
+        <div class="card shadow p-4">
+            <form method="POST">
+                <div class="mb-3">
+                    <label for="codename" class="form-label">Agent Codename:</label>
+                    <input type="text" id="codename" name="codename" class="form-control" value="{{ agent.codename }}" required>
+                    <label for="contact_number" class="form-label">Agent Contact Number:</label>
+                    <input type="text" id="contact_number" name="contact_number" class="form-control" value="{{ agent.contact_number }}" required>
+                    <label for="email" class="form-label">Agent Email:</label>
+                    <input type="text" id="email" name="email" class="form-control" value="{{ agent.email }}" required>
+                    <label for="access_level" class="form-label">Agent Access Level:</label>
+					<select id="access_level" name="access_level" class="form-select">
+					   <option value="Секретно" {% if agent.access_level == 'Секретно' %}selected{% endif %}>Секретно</option>
+					   <option value="Очень секретно" {% if agent.access_level == 'Очень секретно' %}selected{% endif %}>Очень секретно</option>
+					   <option value="Совершенно секретно" {% if agent.access_level == 'Совершенно секретно' %}selected{% endif %}>Совершенно секретно</option>
+					</select>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Update Agent</button>
+            </form>
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('get_agents') }}" class="btn btn-secondary">Back to Agents List</a>
+        </div>
+    </div>
+</body>
+</html>
